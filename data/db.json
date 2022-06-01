@@ -1,0 +1,19 @@
+{
+  "Contacts": [
+    {
+      "name": "ex1,edited",
+      "email": "ex1@exmple.com",
+      "id": 1
+    },
+    {
+      "name": "ex2",
+      "email": "ex2@exmple.com",
+      "id": 2
+    },
+    {
+      "name": "ex3,edited",
+      "email": "ex3@zara.com",
+      "id": 3
+    }
+  ]
+}
