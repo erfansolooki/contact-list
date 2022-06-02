@@ -16,7 +16,7 @@ const EditContact = () => {
   async function editContact() {
     try {
       const { data } = await updateContact(params, inputValue);
-      setInputValue(data);
+      // setInputValue(data);
     } catch (error) {}
   }
 
@@ -27,7 +27,6 @@ const EditContact = () => {
     }
     event.preventDefault();
     editContact(inputValue);
-    setInputValue({ name: "", email: "" });
     navigate("/");
   };
 

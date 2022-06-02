@@ -1,6 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Contact from "../../Components/Contact/Contact";
 import getOneContact from "../../Services/getOneContact";
 import deleteOneContact from "../../Services/deleteOneContact";
 import { BsPerson, BsTrash } from "react-icons/bs";

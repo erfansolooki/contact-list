@@ -7,11 +7,15 @@ import { BsTrash } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 const ContactManager = () => {
   const [contacts, setContacts] = useState([]);
+  const [allContacts, setAllContacts] = useState([]);
+  console.log(allContacts);
+  const [searchTerm, setSearchTerm] = useState("");
 
   async function getContact() {
     try {
       const { data } = await getAllContacts("/Contacts");
       setContacts(data);
+      setAllContacts(data);
     } catch (error) {
       console.log(error);
     }
@@ -40,9 +44,42 @@ const ContactManager = () => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
+  // Search
+  const changeHandlerInput = (event) => {
+    let searchedInput = event.target.value;
+    setSearchTerm(searchedInput);
+    if (searchTerm !== "") {
+      const filteredContacts = allContacts.filter((contact) => {
+        return Object.values(contact)
+          .join("")
+          .toLowerCase()
+          .includes(searchedInput.toLowerCase());
+      });
+      setContacts(filteredContacts);
+    } else {
+      setContacts(allContacts);
+    }
+  };
+
   return (
     <div className="contact-list">
-      <h2>Contact List</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          marginTop: "2rem",
+        }}
+      >
+        <h2>Contact List</h2>
+        <input
+          type="text"
+          value={searchTerm}
+          style={{ width: "15rem" }}
+          placeholder="Search ..."
+          onChange={changeHandlerInput}
+        />
+      </div>
       <ul>
         {contacts.map((contact) => (
           <div
@@ -50,7 +87,7 @@ const ContactManager = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              margin: "0 12rem",
+              margin: "0 15rem",
               border: "solid 1px #efefef",
               borderLeft: "none",
               borderRight: "none",
